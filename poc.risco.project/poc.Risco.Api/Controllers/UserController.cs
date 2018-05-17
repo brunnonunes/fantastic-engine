@@ -7,27 +7,27 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using poc.Risco.Api.Models;
 
-namespace poc.Risco.api.Controllers {
-
+namespace poc.Risco.Api.Controllers
+{
     [Produces("application/json")]
-    [Route("api")]
-    public class AuthenticationController : Controller {
-
+    [Route("api/[controller]")]
+    public class UserController : Controller
+    {
         [HttpGet]
         public string Get() {
 
             return System.Environment.OSVersion.VersionString;
         }
 
-        //[HttpPost]
-        //[Route("signIn")]
-        //public HttpResponseMessage SignInUser([FromBody]SignInModel model) {
+        [HttpPost]
+        [Route("signIn")]
+        public HttpResponseMessage SignInUser([FromBody]SignInModel model) {
 
-        //    HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
+            HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
 
 
 
-        //    return httpResponseMessage;
-        //}
+            return httpResponseMessage;
+        }
     }
 }
