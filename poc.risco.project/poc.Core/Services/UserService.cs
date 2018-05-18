@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using poc.Core.Entities;
+﻿using poc.Core.Entities;
 using poc.Core.Interfaces.Repositories;
 using poc.Core.Interfaces.Services;
 
@@ -12,7 +9,6 @@ namespace poc.Core.Services {
         private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository userRepository) : base(userRepository) {
-
             this._userRepository = userRepository;
         }
     }
