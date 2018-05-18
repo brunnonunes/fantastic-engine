@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using poc.Api.Models;
 
@@ -19,9 +18,9 @@ namespace poc.Api.Controllers {
         [Route("signIn")]
         public IActionResult SignInUser([FromBody]SignInModel model) {
 
-            if (ModelState.IsValid == false) {
-                throw new InvalidOperationException("invalid");
-            }
+            if (ModelState.IsValid == false) { return BadRequest(ModelState); }
+
+            // TODO: Chamar serviço.
 
             return Ok();
         }

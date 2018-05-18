@@ -5,5 +5,8 @@ using poc.Core.Entities;
 
 namespace poc.Core.Interfaces.Services {
 
-    public interface IUserService : IServiceBase<UserEntity> { }
+    public interface IUserService : IServiceBase<UserEntity>
+    {
+        bool SignInUser();
+    }
 }

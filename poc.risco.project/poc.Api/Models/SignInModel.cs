@@ -4,8 +4,11 @@ namespace poc.Api.Models {
 
     public class SignInModel {
 
-        [MinLength(3)]
+        [Required]
         public string Login { get; set; }
+
+        [Required]
+        [MinLength(6)]
         public string Password { get; set; }
     }
 }
