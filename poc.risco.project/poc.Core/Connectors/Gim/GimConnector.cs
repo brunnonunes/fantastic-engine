@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using Dlp.Framework;
+using Newtonsoft.Json;
 using poc.Core.Connectors.Gim.DataContracts;
 using RestSharp;
 using RestClient = RestSharp.RestClient;
@@ -14,11 +14,12 @@ namespace poc.Core.Connectors.Gim {
             GimAuthenticateResponse response = new GimAuthenticateResponse();
 
             try {
+
                 RestClient restClient = new RestClient("https://gim.stone.com.br"); // TODO
 
                 var restRequest = new RestRequest("/api/authorization/authenticate", Method.POST); // TODO
 
-                string contentAsJson = Serializer.JsonSerialize(request);
+                string contentAsJson = JsonConvert.SerializeObject(request);
 
                 restRequest.AddParameter("application/json; charset=utf-8", contentAsJson, ParameterType.RequestBody);
 
@@ -26,7 +27,7 @@ namespace poc.Core.Connectors.Gim {
 
                 IRestResponse restResponse = restClient.Execute(restRequest);
 
-                response = Serializer.JsonDeserialize<GimAuthenticateResponse>(restResponse.Content);
+                response = JsonConvert.DeserializeObject<GimAuthenticateResponse>(restResponse.Content);
             }
             catch (Exception e) {
                 response.OperationReport.Add(new GimReport { Field = e.Source, Message = e.Message });

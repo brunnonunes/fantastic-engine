@@ -34,6 +34,8 @@ namespace poc.Api.Controllers {
                 return Ok(apiResponse);
             }
 
+            // TODO: Melhorar com AutoMapper.
+
             apiResponse.AuthenticationToken = serviceResponse.AuthenticationToken;
             apiResponse.TokenExpirationInMinutes = serviceResponse.TokenExpirationInMinutes;
             apiResponse.UserKey = serviceResponse.UserKey;

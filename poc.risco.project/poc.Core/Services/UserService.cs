@@ -29,7 +29,6 @@ namespace poc.Core.Services {
             };
 
             // Autenticação realizada pelo GIM.
-
             GimAuthenticateResponse gimAuthenticateResponse = new GimConnector().Authenticate(gimAuthenticateRequest);
 
             if (gimAuthenticateResponse.Success == false) {
