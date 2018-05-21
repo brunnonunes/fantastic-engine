@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using poc.Core.Interfaces.Repositories;
 using poc.Core.Interfaces.Services;
+using poc.Core.Services;
+using poc.Infra.Repositories;
 
 namespace poc.Api.Controllers {
 
@@ -7,12 +10,15 @@ namespace poc.Api.Controllers {
     //[Route("api/[controller]")]
     public abstract class AbstractController : Controller {
 
-        private readonly IUserService _userService;
+        protected readonly UserService UserService = new UserService(new UserRepository());
 
-        protected AbstractController() { }
+        protected AbstractController() {
 
-        protected AbstractController(IUserService userService) {
-            this._userService = userService;
         }
+
+        // TODO: Implementar Injeção de dependência.
+        //protected AbstractController(IUserService userService) {
+        //    this._userService = userService;
+        //}
     }
 }

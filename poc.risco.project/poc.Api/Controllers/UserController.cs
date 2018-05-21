@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using poc.Api.DataContracts;
 using poc.Api.Models;
+using poc.Core.ServiceContracts;
 
 namespace poc.Api.Controllers {
 
@@ -9,10 +11,7 @@ namespace poc.Api.Controllers {
     public class UserController : AbstractController {
 
         [HttpGet]
-        public string GetOperationalSystem() {
-
-            return Environment.OSVersion.VersionString;
-        }
+        public string GetOperationalSystem() { return Environment.OSVersion.VersionString; }
 
         [HttpPost]
         [Route("signIn")]
@@ -20,9 +19,28 @@ namespace poc.Api.Controllers {
 
             if (ModelState.IsValid == false) { return BadRequest(ModelState); }
 
-            // TODO: Chamar serviço.
+            SignInUserRequest serviceRequest = new SignInUserRequest { Login = model.Login, Password = model.Password };
 
-            return Ok();
+            SignInUserResponse serviceResponse = this.UserService.SignInUser(serviceRequest);
+
+            SignInUserApiResponse apiResponse = new SignInUserApiResponse();
+
+            if (serviceResponse.Success == false) {
+
+                foreach (Report report in serviceResponse.OperationReport) {
+                    apiResponse.OperationReport.Add(new ApiReport { Field = report.Field, Message = report.Message });
+                }
+
+                return Ok(apiResponse);
+            }
+
+            apiResponse.AuthenticationToken = serviceResponse.AuthenticationToken;
+            apiResponse.TokenExpirationInMinutes = serviceResponse.TokenExpirationInMinutes;
+            apiResponse.UserKey = serviceResponse.UserKey;
+            apiResponse.Name = serviceResponse.Name;
+            apiResponse.Success = true;
+
+            return Ok(apiResponse);
         }
     }
 }

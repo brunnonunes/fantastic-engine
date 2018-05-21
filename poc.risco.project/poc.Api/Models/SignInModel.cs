@@ -5,6 +5,7 @@ namespace poc.Api.Models {
     public class SignInModel {
 
         [Required]
+        [EmailAddress]
         public string Login { get; set; }
 
         [Required]

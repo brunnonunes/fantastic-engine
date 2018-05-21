@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\poc.Core\poc.Core.csproj" />
+    <ProjectReference Include="..\poc.Infra\poc.Infra.csproj" />
   </ItemGroup>
 
 </Project>

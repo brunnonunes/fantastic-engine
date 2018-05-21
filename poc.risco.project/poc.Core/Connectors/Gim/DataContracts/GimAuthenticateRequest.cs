@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace poc.Core.Connectors.Gim.Contracts {
+namespace poc.Core.Connectors.Gim.DataContracts {
 
-    public sealed class AuthenticateRequest {
+    public sealed class GimAuthenticateRequest {
 
         public string Email { get; set; }
         public string Password { get; set; }
