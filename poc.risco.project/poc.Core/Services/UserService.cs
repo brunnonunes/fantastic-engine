@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Extensions.Options;
+using poc.Core.ConfigurationSettings;
 using poc.Core.Connectors.Gim;
 using poc.Core.Connectors.Gim.DataContracts;
 using poc.Core.Entities;

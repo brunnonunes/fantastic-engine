@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using poc.Core.ConfigurationSettings;
 using poc.Core.Connectors.Gim.DataContracts;
 using RestSharp;
 using RestClient = RestSharp.RestClient;
@@ -9,13 +11,19 @@ namespace poc.Core.Connectors.Gim {
 
     public sealed class GimConnector {
 
+        //private GimSettings _gimSettings { get; set; }
+
+        //public GimConnector(IOptions<GimSettings> gimSettings) { this._gimSettings = gimSettings.Value; }
+
         public GimAuthenticateResponse Authenticate(GimAuthenticateRequest request) {
 
             GimAuthenticateResponse response = new GimAuthenticateResponse();
 
             try {
 
-                RestClient restClient = new RestClient("https://gim.stone.com.br"); // TODO
+                RestClient restClient = new RestClient("https://gim.stone.com.br"); // TODO: passar para o appsettings.
+
+                //RestClient restClient = new RestClient(_gimSettings.ProductionDomain); 
 
                 var restRequest = new RestRequest("/api/authorization/authenticate", Method.POST); // TODO
 
