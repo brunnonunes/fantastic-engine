@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 
 namespace poc.Api.DataContracts {
     public abstract class ApiResponseBase {

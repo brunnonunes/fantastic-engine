@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace poc.Core.Interfaces.Services {
+﻿namespace poc.Core.Interfaces.Services {
 
     public interface IServiceBase<TEntity> where TEntity : class {
 

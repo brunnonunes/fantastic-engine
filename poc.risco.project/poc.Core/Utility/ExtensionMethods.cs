@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace poc.Core.Utility
+﻿namespace poc.Core.Utility
 {
     public static class ExtensionMethods
     {

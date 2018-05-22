@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace poc.Core.Interfaces.Repositories {
+﻿namespace poc.Core.Interfaces.Repositories {
 
     public interface IRepositoryBase<TEntity> where TEntity : class {
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using poc.Core.Entities;
 using poc.Core.Interfaces.Repositories;
 

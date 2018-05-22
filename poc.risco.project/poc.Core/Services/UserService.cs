@@ -15,16 +15,12 @@ namespace poc.Core.Services {
 
         private readonly IOptions<GimSettings> _gimSettings;
 
-        public UserService(IUserRepository userRepository, IOptions<GimSettings> gimSettings) : base(userRepository) {
+        public UserService(IUserRepository userRepository, IOptions<GimSettings> gimSettings) {
             this._userRepository = userRepository;
             this._gimSettings = gimSettings;
         }
 
         public SignInUserResponse SignInUser(SignInUserRequest request) {
-
-            //var x = this._userRepository;
-
-            //var y = this._repository;
 
             SignInUserResponse response = new SignInUserResponse();
 

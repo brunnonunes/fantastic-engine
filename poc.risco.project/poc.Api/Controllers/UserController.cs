@@ -1,12 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using poc.Api.DataContracts;
 using poc.Api.Models;
-using poc.Core.ConfigurationSettings;
 using poc.Core.Interfaces.Services;
 using poc.Core.ServiceContracts;
-using poc.Core.Services;
 
 namespace poc.Api.Controllers {
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace poc.Core.ServiceContracts {
+﻿namespace poc.Core.ServiceContracts {
 
     public sealed class SignInUserRequest {
 
