@@ -16,13 +16,13 @@ namespace poc.Api.Controllers {
 
         private GimSettings _gimSettings { get; set; }
 
-        public UserController(IOptions<GimSettings> gimSettings) { this._gimSettings = gimSettings.Value; }
+        //public UserController(IOptions<GimSettings> gimSettings) { this._gimSettings = gimSettings.Value; }
 
         private IUserService _userService { get; }
 
-        //public UserController(IUserService userService) {
-        //    this._userService = userService;
-        //}
+        public UserController(IUserService userService) {
+            this._userService = userService;
+        }
 
         [HttpGet]
         public string GetOperationalSystem() { return Environment.OSVersion.VersionString; }
