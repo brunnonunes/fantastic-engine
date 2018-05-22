@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using poc.Core.Entities;
-using poc.Core.Interfaces.Repositories;
+﻿using poc.Core.Interfaces.Repositories;
 using poc.Core.Interfaces.Services;
 
 namespace poc.Core.Services {
 
     public class ServiceBase<TEntity> : IServiceBase<TEntity> where TEntity : class {
 
-        private readonly IRepositoryBase<TEntity> _repository;
+        protected readonly IRepositoryBase<TEntity> _repository;
 
         public ServiceBase(IRepositoryBase<TEntity> repository) {
              

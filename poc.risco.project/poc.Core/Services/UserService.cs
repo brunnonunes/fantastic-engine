@@ -14,12 +14,19 @@ namespace poc.Core.Services {
 
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository) : base(userRepository) {
+        private readonly IOptions<GimSettings> _gimSettings;
 
+        public UserService(IUserRepository userRepository, IOptions<GimSettings> gimSettings) : base(userRepository)
+        {
             this._userRepository = userRepository;
+            _gimSettings = gimSettings;
         }
 
-        public SignInUserResponse SignInUser(SignInUserRequest request) {
+        public SignInUserResponse SignInUser(SignInUserRequest request)
+        {
+            //var x = this._userRepository;
+            
+            //var y = this._repository;
 
             SignInUserResponse response = new SignInUserResponse();
 
@@ -31,7 +38,7 @@ namespace poc.Core.Services {
             };
 
             // Autenticação realizada pelo GIM.
-            GimAuthenticateResponse gimAuthenticateResponse = new GimConnector().Authenticate(gimAuthenticateRequest);
+            GimAuthenticateResponse gimAuthenticateResponse = new GimConnector(_gimSettings).Authenticate(gimAuthenticateRequest);
 
             if (gimAuthenticateResponse.Success == false) {
 

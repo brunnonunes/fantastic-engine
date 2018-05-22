@@ -14,10 +14,6 @@ namespace poc.Api.Controllers {
     [Route("api/[controller]")]
     public class UserController : AbstractController {
 
-        private GimSettings _gimSettings { get; set; }
-
-        //public UserController(IOptions<GimSettings> gimSettings) { this._gimSettings = gimSettings.Value; }
-
         private IUserService _userService { get; }
 
         public UserController(IUserService userService) {
@@ -30,8 +26,6 @@ namespace poc.Api.Controllers {
         [HttpPost]
         [Route("signIn")]
         public IActionResult SignInUser([FromBody]SignInModel model) {
-
-            var x = _gimSettings.ProductionDomain;
 
             if (ModelState.IsValid == false) { return BadRequest(ModelState); }
 

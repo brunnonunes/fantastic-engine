@@ -11,9 +11,11 @@ namespace poc.Core.Connectors.Gim {
 
     public sealed class GimConnector {
 
-        //private GimSettings _gimSettings { get; set; }
+        private readonly IOptions<GimSettings> _gimSettings;
 
-        //public GimConnector(IOptions<GimSettings> gimSettings) { this._gimSettings = gimSettings.Value; }
+        public GimConnector(IOptions<GimSettings> gimSettings) {
+            this._gimSettings = gimSettings;
+        }
 
         public GimAuthenticateResponse Authenticate(GimAuthenticateRequest request) {
 
@@ -21,11 +23,9 @@ namespace poc.Core.Connectors.Gim {
 
             try {
 
-                RestClient restClient = new RestClient("https://gim.stone.com.br"); // TODO: passar para o appsettings.
+                RestClient restClient = new RestClient(_gimSettings.Value.ProductionDomain);
 
-                //RestClient restClient = new RestClient(_gimSettings.ProductionDomain); 
-
-                var restRequest = new RestRequest("/api/authorization/authenticate", Method.POST); // TODO
+                RestRequest restRequest = new RestRequest(_gimSettings.Value.AuthenticateEndpoint, Method.POST);
 
                 string contentAsJson = JsonConvert.SerializeObject(request);
 
@@ -38,7 +38,7 @@ namespace poc.Core.Connectors.Gim {
                 response = JsonConvert.DeserializeObject<GimAuthenticateResponse>(restResponse.Content);
             }
             catch (Exception e) {
-                response.OperationReport.Add(new GimReport { Field = e.Source, Message = e.Message });
+                response.OperationReport.Add(new GimReport { Field = e.TargetSite.DeclaringType.ToString(), Message = e.Message });
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return response;
             }

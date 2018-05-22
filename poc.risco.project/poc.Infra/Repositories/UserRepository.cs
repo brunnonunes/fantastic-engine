@@ -8,6 +8,9 @@ namespace poc.Infra.Repositories {
 
     public sealed class UserRepository : RepositoryBase<UserEntity>, IUserRepository {
 
-
+        public bool Add(UserEntity entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
