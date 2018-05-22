@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using poc.Core.ConfigurationSettings;
 using poc.Core.Connectors.Gim;
 using poc.Core.Connectors.Gim.DataContracts;
@@ -16,16 +15,15 @@ namespace poc.Core.Services {
 
         private readonly IOptions<GimSettings> _gimSettings;
 
-        public UserService(IUserRepository userRepository, IOptions<GimSettings> gimSettings) : base(userRepository)
-        {
+        public UserService(IUserRepository userRepository, IOptions<GimSettings> gimSettings) : base(userRepository) {
             this._userRepository = userRepository;
-            _gimSettings = gimSettings;
+            this._gimSettings = gimSettings;
         }
 
-        public SignInUserResponse SignInUser(SignInUserRequest request)
-        {
+        public SignInUserResponse SignInUser(SignInUserRequest request) {
+
             //var x = this._userRepository;
-            
+
             //var y = this._repository;
 
             SignInUserResponse response = new SignInUserResponse();
@@ -33,12 +31,12 @@ namespace poc.Core.Services {
             GimAuthenticateRequest gimAuthenticateRequest = new GimAuthenticateRequest {
                 Email = request.Login,
                 Password = request.Password,
-                ApplicationKey = new Guid("e632c04b-a1d7-4faa-bf34-1764bec84607"), // TODO: Passar para appsettings.
-                TokenExpirationInMinutes = 720 // TODO: Passar para appsettings.
+                ApplicationKey = this._gimSettings.Value.ApplicationKey,
+                TokenExpirationInMinutes = this._gimSettings.Value.TokenExpirationInMinutes
             };
 
             // Autenticação realizada pelo GIM.
-            GimAuthenticateResponse gimAuthenticateResponse = new GimConnector(_gimSettings).Authenticate(gimAuthenticateRequest);
+            GimAuthenticateResponse gimAuthenticateResponse = new GimConnector(this._gimSettings).Authenticate(gimAuthenticateRequest);
 
             if (gimAuthenticateResponse.Success == false) {
 

@@ -23,9 +23,9 @@ namespace poc.Core.Connectors.Gim {
 
             try {
 
-                RestClient restClient = new RestClient(_gimSettings.Value.ProductionDomain);
+                RestClient restClient = new RestClient(this._gimSettings.Value.ProductionDomain);
 
-                RestRequest restRequest = new RestRequest(_gimSettings.Value.AuthenticateEndpoint, Method.POST);
+                RestRequest restRequest = new RestRequest(this._gimSettings.Value.AuthenticateEndpoint, Method.POST);
 
                 string contentAsJson = JsonConvert.SerializeObject(request);
 
